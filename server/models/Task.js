@@ -1,5 +1,5 @@
 // Require mongoose
-
+const mongoose = require('mongoose');
 
 // Implement schema for a task
 // Each task should have:
