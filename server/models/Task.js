@@ -6,5 +6,18 @@ const mongoose = require('mongoose');
 // - title (String, required)
 // - done (Boolean, defaults to false)
 
+const taskSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,   
+    trim: true   
+  },
+  done: {
+    type: Boolean,
+    default: false      
+  }
+}, {
+  timestamps: true 
+});
 
 // Export the model as 'Task'
