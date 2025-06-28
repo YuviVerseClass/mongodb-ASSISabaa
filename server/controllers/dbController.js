@@ -35,7 +35,26 @@ async function addTask(req, res) {
 }
 
 async function toggleTask(req, res) {
-  // TODO
+    try {
+    const { id } = req.params;
+
+    // מחפש את המשימה לפי ID
+    const task = await Task.findById(id);
+    
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+
+    // משנה את הסטטוס להפך
+    task.done = !task.done;
+    
+    // שומר את השינוי
+    const updatedTask = await task.save();
+    res.json(updatedTask);
+  } catch (error) {
+    console.error('Error toggling task:', error);
+    res.status(500).json({ error: 'Failed to toggle task' });
+  }
 }
 
 async function deleteTask(req, res) {
